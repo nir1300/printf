@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(int c)
 {
@@ -23,7 +23,12 @@ int	ft_putstr(char *str)
 	int	n;
 
 	n = 0;
-	while (str[n] != 0)
-		write(1, &str[n++], 1);
-	return (n);
+	if (str != NULL)
+	{
+		while (str[n] != 0)
+			write(1, &str[n++], 1);
+		return (n);
+	}
+	return (-1);
+	
 }
