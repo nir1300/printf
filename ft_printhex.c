@@ -6,7 +6,7 @@
 /*   By: nrumpfhu <nrumpfhu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:01:45 by nrumpfhu          #+#    #+#             */
-/*   Updated: 2024/09/27 14:54:12 by nrumpfhu         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:35:38 by nrumpfhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	puthex(unsigned int dec)
 	}
 	return (count);
 }
+
 int	convert_dec_hex(unsigned int dec, const char format)
 {
 	unsigned int	temp;

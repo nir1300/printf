@@ -6,7 +6,7 @@
 /*   By: nrumpfhu <nrumpfhu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:01:43 by nrumpfhu          #+#    #+#             */
-/*   Updated: 2024/09/25 16:01:44 by nrumpfhu         ###   ########.fr       */
+/*   Updated: 2024/09/29 13:24:54 by nrumpfhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	ft_putstr(char *str)
 	int	n;
 
 	n = 0;
-	if (str != NULL)
+	if (str == NULL)
 	{
-		while (str[n] != 0)
-			write(1, &str[n++], 1);
-		return (n);
+		write(1, "(null)", 6);
+		return (6);
 	}
-	return (-1);
-	
+	while (str[n] != 0)
+		write(1, &str[n++], 1);
+	return (n);
 }

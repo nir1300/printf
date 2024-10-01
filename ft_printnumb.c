@@ -6,7 +6,7 @@
 /*   By: nrumpfhu <nrumpfhu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:01:48 by nrumpfhu          #+#    #+#             */
-/*   Updated: 2024/09/27 16:12:07 by nrumpfhu         ###   ########.fr       */
+/*   Updated: 2024/09/29 13:44:57 by nrumpfhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	ft_countnum_uns(unsigned int n)
 int	ft_putnbr_uns(unsigned int n)
 {
 	int	res;
+
 	if ((int)n < 0)
 		n = 4294967295 + (int)n + 1;
 	res = ft_countnum_uns(n);
@@ -42,7 +43,9 @@ int	ft_putnbr_uns(unsigned int n)
 		n = n % 10;
 	}
 	if (n <= 9)
+	{
 		ft_putchar(n + '0');
+	}
 	return (res);
 }
 
@@ -74,7 +77,7 @@ int	ft_putnbr(int n, const char format)
 	int	res;
 
 	res = ft_countnum(n);
-	if (n < 0 && format != 'u')
+	if (n < 0)
 	{
 		ft_putchar('-');
 		if (n == -2147483648)

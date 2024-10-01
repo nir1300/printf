@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printptr.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nrumpfhu <nrumpfhu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/29 13:20:43 by nrumpfhu          #+#    #+#             */
+/*   Updated: 2024/10/01 15:53:59 by nrumpfhu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void convert_ptr_hex(unsigned long dec_a)
+void	convert_ptr_hex(unsigned long dec_a)
 {
 	if (dec_a >= 16)
 	{
@@ -18,8 +30,16 @@ void convert_ptr_hex(unsigned long dec_a)
 
 int	convert_ptr(void *dec)
 {
-	unsigned long dec_a = (unsigned long) dec;
-	int res = ft_putstr("0x");
+	unsigned long	dec_a;
+	int				res;
+
+	dec_a = (unsigned long)dec;
+	if (dec == NULL)
+	{
+		ft_putstr("(nil)");
+		return (5);
+	}
+	res = ft_putstr("0x");
 	convert_ptr_hex(dec_a);
 	while (dec_a != 0)
 	{

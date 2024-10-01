@@ -6,7 +6,7 @@
 /*   By: nrumpfhu <nrumpfhu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:01:54 by nrumpfhu          #+#    #+#             */
-/*   Updated: 2024/09/27 16:29:27 by nrumpfhu         ###   ########.fr       */
+/*   Updated: 2024/10/01 22:38:53 by nrumpfhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,17 @@ int	ft_printf(const char *format, ...)
 
 	ret = 0;
 	va_start(args, format);
+	if (format == NULL)
+		return (-1);
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
+			if (*format != 'c' && *format != 's' && *format != 'p'
+				&& *format != 'i' && *format != 'u' && *format != 'x'
+				&& *format != 'X' && *format != 'd' && *format != '%')
+				return (-1);
 			if (*format != '\0')
 				ret += ft_printformat(*format, args);
 		}
@@ -67,76 +73,69 @@ int	ft_printf(const char *format, ...)
 	return (ret);
 }
 
-/*
-int	main(void)
-{
-	int a = printf(" %x ", 0);
-	int b = ft_printf(" %x ", 0);
-	// int a = printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
-	// printf("\n");
-	// int b = ft_printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
-	printf("%d%d", a, b);
-	// ft_printf(" NULL %s NULL", NULL);
-	// printf(" %p %p ", 0, 0);
-	// ft_printf(" %p %p ", 0, 0);
-	// int a = printf(" %d \n", 100);
-	// int b = ft_printf(" %d \n", 100);
-	// printf("%d%d", a, b);
-	// char			c;
-	// char			*s;
-	// int				i;
-	// void			*ptr;
-	// int				dec;
-	// unsigned int	unint;
-	// int				a;
-	// int				d;
-	// unsigned int				x;
-	// int				q;
-	// int				b;
-	// int				e;
-	// int				y;
-	// int				p;
+// #include <stdio.h>
 
-	// c = 'h';
-	// s = "hello";
-	// i = 123456789;
-	// ptr = &i;
-	// dec = 012;
-	// unint = -234;
-	// a = printf("c: %c, ", c);
-	// printf("len c: %d\n", a);
-	// d = printf("s: %s, ", s);
-	// printf("len s: %d\n", d);
-	// int n = printf("p: %p, ", ptr);
-	// printf("len: %d\n", n);
-	// printf("d: %d\n", dec);
-	// printf("i: %i\n", i);
-	// int u = printf("u: %u, ", unint);
-	// printf("len u: %d\n", u);
-	// x = printf("x: %x, ", i);
-	// printf("len x: %d\n", x);
-	// printf("X: %X\n", i);
-	// q = printf("Percent: %%\n");
-	// printf("len percent: %d\n", q);
-	// //printf("%");
-	// // not sure how to correctly implement this case,
-	// // return null in my function?
-	// printf("\n");
-	// b = ft_printf("c: %c, ", c);
-	// printf("len c: %d\n", b);
-	// e = ft_printf("s: %s, ", s);
-	// ft_printf("len s: %d\n", e);
-	// int m = ft_printf("p: %p, ", ptr);
-	// ft_printf("len: %d\n", m);
-	// ft_printf("d: %d\n", dec);
-	// ft_printf("i: %i\n", i);
-	// int uu = ft_printf("u: %u, ", unint);
-	// ft_printf("len u: %d\n", uu); //dis wrong
-	// y = ft_printf("x: %x, ", i);
-	// ft_printf("len x: %d\n", y);
-	// ft_printf("X: %X\n", i);
-	// p = ft_printf("Percent: %%\n");
-	// ft_printf("len percent: %d\n", p);
-	// //ft_printf("%%");
-}
-*/
+// int	main(void)
+// {
+// 	ft_printf("%d", ft_printf("Hello%"));
+// 	ft_printf("\n");
+// 	ft_printf("%d", ft_printf("Hello%   "));
+// 	ft_printf("\n");
+// 	printf("%d", printf("Hello%    "));
+// 	// ft_printf("%d\n", ft_printf(NULL));
+// 	// printf("%d\n", printf(NULL));
+// 	// char			c;
+// 	// char			*s;
+// 	// int				i;
+// 	// void			*ptr;
+// 	// int				dec;
+// 	// unsigned int	unint;
+// 	// int				a;
+// 	// int				d;
+// 	// unsigned int				x;
+// 	// int				q;
+// 	// int				b;
+// 	// int				e;
+// 	// int				y;
+// 	// int				p;
+
+// 	// c = 'h';
+// 	// s = "hello";
+// 	// i = 123456789;
+// 	// ptr = &i;
+// 	// dec = 012;
+// 	// unint = -234;
+
+// 	// a = printf("c: %c, ", c);
+// 	// printf("len c: %d\n", a);
+// 	// d = printf("s: %s, ", s);
+// 	// printf("len s: %d\n", d);
+// 	// int n = printf("p: %p, ", ptr);
+// 	// printf("len: %d\n", n);
+// 	// printf("d: %d\n", dec);
+// 	// printf("i: %i\n", i);
+// 	// int u = printf("u: %u, ", unint);
+// 	// printf("len u: %d\n", u);
+// 	// x = printf("x: %x, ", i);
+// 	// printf("len x: %d\n", x);
+// 	// printf("X: %X\n", i);
+// 	// q = printf("Percent: %%\n");
+// 	// printf("len percent: %d\n", q);
+// 	// printf("\n");
+
+// 	// b = ft_printf("c: %c, ", c);
+// 	// printf("len c: %d\n", b);
+// 	// e = ft_printf("s: %s, ", s);
+// 	// ft_printf("len s: %d\n", e);
+// 	// int m = ft_printf("p: %p, ", ptr);
+// 	// ft_printf("len: %d\n", m);
+// 	// ft_printf("d: %d\n", dec);
+// 	// ft_printf("i: %i\n", i);
+// 	// int uu = ft_printf("u: %u, ", unint);
+// 	// ft_printf("len u: %d\n", uu);
+// 	// y = ft_printf("x: %x, ", i);
+// 	// ft_printf("len x: %d\n", y);
+// 	// ft_printf("X: %X\n", i);
+// 	// p = ft_printf("Percent: %%\n");
+// 	// ft_printf("len percent: %d\n", p);
+// }
